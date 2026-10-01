@@ -8,13 +8,13 @@
 Install the one dependency:
 
 ```cmd
-py -m pip install bleak
+python -m pip install bleak
 ```
 
 Then run:
 
 ```cmd
-py esp32_ble_terminal_win.py
+python esp32_ble_terminal_win.py
 ```
 
 It will scan for `ESPSERIALBLE`, connect, find `FFE1`, enable notifications, and give you an interactive terminal.
