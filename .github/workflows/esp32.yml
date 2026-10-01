@@ -9,13 +9,17 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -28,15 +32,23 @@ jobs:
           command: |
             rm -f sdkconfig sdkconfig.old
             idf.py set-target esp32c3
+
+            grep -q '^CONFIG_IDF_TARGET="esp32c3"$' sdkconfig
+            grep -q '^CONFIG_BT_BLE_42_FEATURES_SUPPORTED=y$' sdkconfig
+
             idf.py build
+            idf.py merge-bin -o esp32_serial_ble_bridge-C3-full.bin -f raw
 
       - name: Archive ESP32-C3 firmware
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: esp32-c3-firmware
+          if-no-files-found: error
+          retention-days: 7
           path: |
             build/bootloader/bootloader.bin
             build/partition_table/partition-table.bin
             build/esp32_serial_ble_bridge.bin
+            build/esp32_serial_ble_bridge-C3-full.bin
             build/flash_args
             build/flasher_args.json
