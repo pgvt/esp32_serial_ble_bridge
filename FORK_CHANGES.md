@@ -17,11 +17,11 @@ The final build has been compiled, flashed, loopback-tested, and the USB configu
 |---|---|
 | MCU/board | ESP32-C3 development board |
 | IDE | VS Code |
-| Extension | Espressif ESP-IDF extension |
+| Extension | Espressif ESP-IDF extension v2.3.0|
 | ESP-IDF | **v5.3.6** |
 | Target | `esp32c3` |
 | Toolchain | ESP32-C3 **RISC-V** toolchain installed by ESP-IDF |
-| iOS terminal | BLE Serial Pro |
+| iOS terminal | BLE Serial Pro `https://github.com/ednieuw` `ednieuw@xs4all.nl` |
 | Upstream project | `https://github.com/riozebratubo/esp32_serial_ble_bridge` |
 | Upstream license | CC BY-NC 4.0 |
 
