@@ -13,6 +13,7 @@
 
 #include "esp_log.h"
 #include "esp_gatts_api.h"
+#include "driver/gpio.h"
 
 #include "freertos/task.h"
 
@@ -66,6 +67,7 @@ void uart_module_init() {
     uart_param_config(UART_NUM_1, &uart_data_config);
     uart_set_mode(UART_NUM_1, UART_MODE_UART);
     uart_set_pin(UART_NUM_1, app_settings.uart_pin_tx, app_settings.uart_pin_rx, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    gpio_set_pull_mode(app_settings.uart_pin_rx, GPIO_PULLUP_ONLY);
 
     /*
      * ESP32-C3 configuration console:
